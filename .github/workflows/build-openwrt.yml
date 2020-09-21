@@ -73,6 +73,11 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
+    
+    - name: Import external feeds
+      working-directory: ./openwrt
+      run: |
+        git clone https://github.com/xiaorouji/openwrt-package.git package/lienol
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -80,11 +85,6 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
       
-    - name: Import external feeds
-      working-directory: ./openwrt
-      run: |
-        git clone https://github.com/xiaorouji/openwrt-package.git package/lienol
-
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
