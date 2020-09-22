@@ -75,12 +75,6 @@ jobs:
         sed -i '11s/#//' feeds.conf.default
         $GITHUB_WORKSPACE/$DIY_P1_SH
     
-    - name: Import external feeds
-      working-directory: ./openwrt
-      run: |
-        git clone https://github.com/xiaorouji/openwrt-package.git package/lienol
-        #git clone https://github.com/fw876/helloworld package/helloworld
-
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
